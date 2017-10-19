@@ -1,0 +1,16 @@
+[Unit]
+Description=%i API uWSGI app
+After=syslog.target
+
+[Service]
+#ExecStart=/usr/bin/uwsgi --ini /opt/uwsgi.conf.d/mnemonic.ini --http-socket=/run/mnemonic.sock
+ExecStart=/usr/bin/uwsgi --ini /opt/uwsgi.conf.d/%i.ini
+User=nginx
+Group=nginx
+Restart=on-failure
+KillSignal=SIGQUIT
+Type=notify
+StandardError=syslog
+NotifyAccess=all
+[root@api mnemonic]# 
+
